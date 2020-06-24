@@ -16,15 +16,19 @@ public class Email {
     private String firstName;
     private String lastName;
     private String password;
+    private String email;
     private String department;
     private int defaultPasswordLength = 7;
-    private int mailboxCapacity;
+    private int mailboxCapacity = 200 ;
     private String alternateEmail;
+    private String companySuffix = "computermentors.org";
 
+
+    // Constructor to receive the first name and the last name
     public Email(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        System.out.println("Email Created: " + this.firstName + " " + this.lastName);
+
 
 
         // call a method asking for the department - return the department
@@ -36,9 +40,17 @@ public class Email {
         System.out.println("Your password is: " + password);
 
 
+
+        // https:github.com/dhalimon/mymail
+
+                      //Start here
+
+        // Combine elements to generate email
+        email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department +"."+ companySuffix;
+        System.out.println("Your email is: " + email);
     }
 
-// Constructor to receive the first name and the last name
+
 
     // Ask for the department
     private String setDepartment() {
@@ -67,7 +79,23 @@ public class Email {
         }
         return new String(password);
     }
-}
+
 // Set the mailbox capacity
-// Set the alternate eamil
+    public void setMailboxCapacity(int capacity) {this.mailboxCapacity = capacity;}
+    public int getMailboxCapacity() { return mailboxCapacity;}
+
+// Set the alternate email
+    public void setAlternateEmail(String altEMail) {this.alternateEmail = altEMail;}
+    public String getAlternateEmail(){return alternateEmail;}
+
 // Change the password
+    public void changePassword(String password) {this.password = password;}
+    public String getPassword() {return password;}
+
+    public String showInfo() {
+        return "DISPLAY NAME: " + firstName + " " + lastName +
+                "\nCOMPANY EMAIL: " + email +
+                "\nMAILBOX CAPACITY: " + mailboxCapacity + "mb";
+    }
+
+}
